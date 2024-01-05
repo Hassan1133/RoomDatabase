@@ -11,13 +11,13 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var database: ContactDatabase
+    private lateinit var database: ContactDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"contactDB").build()
+        database = ContactDatabase.getDatabase(this)
 
         GlobalScope.launch {
             database.contactDao().insert(Contact(0,"Hassan","03030558418"))
